@@ -13,7 +13,7 @@ interface NavbarItemsProps {
 
 const NavbarItems = ({ currentPath, items }: NavbarItemsProps) => {
     return (
-        <ul className="flex items-center bg-gray-100/10 gap-10 p-2 rounded-full">
+        <ul className="flex items-center bg-gray-100/20 gap-10 p-2 rounded-full">
             {items.map((item, idx) => 
             item.items ? (
                 <div className="space-x-2" key={idx}>
