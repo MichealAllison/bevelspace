@@ -1,13 +1,4 @@
-export type Image = {
-    image1: string;
-    image2: string;
-    image3: string;
-    image4: string;
-    image5: string;
-    image6: string;
-    image7: string;
-    image8: string;
-}
+
 
 export type Feature = {
     feature1: string;
@@ -25,7 +16,7 @@ export type Property = {
     title: string;
     description: string;
     price: number;
-    images: Image[];
+    images: string;
     location: string;
     features: Feature;
     bedrooms: number;
