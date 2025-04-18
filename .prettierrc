@@ -1,0 +1,48 @@
+{
+  "singleQuote": true,
+  "semi": true,
+  "tabWidth": 2,
+  "printWidth": 120,
+  "plugins": [
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "tailwindAttributes": [
+    "myClassList",
+    "labelClassName",
+    "containerClassName",
+    "inputClassName",
+    "inputWrapperClassName",
+    "labelClassName",
+    "containerClassName"
+  ],
+  "tailwindFunctions": ["clsx", "cn", "cva"],
+  "tailwindConfig": "./tailwind.config.js",
+  "importOrder": [
+    "^react$",
+    "^react.*$",
+    "<THIRD_PARTY_MODULES>",
+    "^@/router(.*)$",
+    "^@/pages(.*)$",
+    "^@/features(.*)$",
+    "^@/components/layout(.*)$",
+    "^@/components/ui(.*)$",
+    "^@/components(.*)$",
+    "^@/assets(.*)$",
+    "^@/hooks(.*)$",
+    "^@/auth",
+    "^@/constants(.*)$",
+    "^@/lib(.*)$",
+    "^@/utils(.*)$",
+    "^@/types(.*)$",
+    "<TYPES>^(node:)",
+    "<TYPES>",
+    "<TYPES>^[.]",
+    "^[./]",
+    "^(?!.*[.]css$)[./].*$",
+    ".css$",
+    "^[.]"
+  ],
+  "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
+  "importOrderTypeScriptVersion": "5.0.0"
+}
