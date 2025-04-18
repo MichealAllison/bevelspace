@@ -1,0 +1,83 @@
+Platform: Real Estate E-Commerce
+Roles: Admin, User
+Date: April 2025
+Prepared by: Allison Micheal Favour
+
+🔐 1. Authentication
+
+Method	Endpoint	Auth	Description
+POST	/api/auth/register	❌ No	Register a new user account
+POST	/api/auth/login	❌ No	Log in and receive JWT token
+POST	/api/auth/logout	✅ Yes	Log out user
+GET	/api/auth/me	✅ Yes	Get currently logged-in user's info
+PUT	/api/auth/update-profile	✅ Yes	Update profile details (name, email, phone, etc.)
+🏠 2. Property Listings
+
+Method	Endpoint	Auth	Description
+GET	/api/properties	❌ No	Fetch all property listings
+GET	/api/properties/:id	❌ No	Get property details by ID
+GET	/api/properties/search	❌ No	Search by filters (price, type, location)
+POST	/api/properties	✅ Admin	Create a new property listing
+PUT	/api/properties/:id	✅ Admin	Edit an existing listing
+DELETE	/api/properties/:id	✅ Admin	Delete a listing permanently
+❤️ 3. Saved Properties (Wishlist)
+
+Method	Endpoint	Auth	Description
+GET	/api/saved	✅ Yes	Get user’s saved properties
+POST	/api/saved	✅ Yes	Save a property
+DELETE	/api/saved/:id	✅ Yes	Remove saved property by ID
+📬 4. Contact / Inquiries
+
+Method	Endpoint	Auth	Description
+POST	/api/contact	✅ Yes	Send inquiry message for a property
+GET	/api/contact/messages	✅ Admin	Admin views all received messages
+📊 5. Admin Dashboard
+
+Method	Endpoint	Auth	Description
+GET	/api/admin/stats	✅ Admin	Platform stats (total users, properties, etc.)
+GET	/api/admin/users	✅ Admin	View all registered users
+PATCH	/api/admin/users/:id/ban	✅ Admin	Ban or unban a user account
+📂 6. File Uploads
+
+Method	Endpoint	Auth	Description
+POST	/api/upload	✅ Admin	Upload property images or documents
+✅ Notes for Developer
+Use Bearer Token in Authorization header for protected routes.
+
+Role-based checks: user, admin
+
+🏠 PROPERTY LISTING – DELIVERABLES
+✅ 1. Backend Deliverables (API / Data)
+📁 Data Model: Property
+Key fields your backend developer should include in the database schema:
+
+
+Field	Type	Required	Description
+id	String	✅	Unique property ID
+title	String	✅	Property headline/title
+description	Text	✅	Detailed property description
+price	Number	✅	Price (e.g., in NGN or USD)
+location	String	✅	Full address or area (city, state)
+type	String	✅	House, Flat, Land, etc.
+category	String	✅	Rent or Sale
+images	Array[String]	✅	Image URLs (multiple allowed)
+bedrooms	Number	❌	Number of bedrooms
+bathrooms	Number	❌	Number of bathrooms
+parking	Boolean	❌	Parking availability
+features	Array[String]	❌	E.g., Air Conditioning, Balcony, etc.
+agentId	String	✅	Admin or agent who created it
+createdAt	DateTime	✅	Date listed
+updatedAt	DateTime	✅	Date last updated
+📡 API Deliverables
+GET /api/properties — fetch all listings
+
+GET /api/properties/:id — get one listing
+
+GET /api/properties/search?type=house&location=lagos — filtered search
+
+POST /api/properties — create a new listing (admin only)
+
+PUT /api/properties/:id — update listing (admin only)
+
+DELETE /api/properties/:id — delete listing (admin only)
+
