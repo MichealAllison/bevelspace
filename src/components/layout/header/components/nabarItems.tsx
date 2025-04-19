@@ -25,7 +25,7 @@ const NavbarItems = ({ currentPath, items }: NavbarItemsProps) => {
                                 label={subItem.label} 
                                 isActive={subItem.path === currentPath} 
                                 path={subItem.path} 
-                                className="w-full lg:w-auto"
+                                className="w-full "
                             />
                         ))}
                     </ul>
