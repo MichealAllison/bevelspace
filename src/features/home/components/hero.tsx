@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const Hero = () => {
     return (
-        <div className="w-full h-screen bg-cover bg-center" style={{ backgroundImage: `url('/images/heroimg.png')` }}>
+        <div className="w-full h-[80vh] lg:h-[100vh] bg-cover bg-center" style={{ backgroundImage: `url('/images/heroimg.png')` }}>
                 <div className="mx-auto container pb-20 pt-40 md:pt-32 lg:pt-60">
                     {/* Hero content*/}
                     <div className="space-y-4 p-4 md:p-6 lg:p-10">
