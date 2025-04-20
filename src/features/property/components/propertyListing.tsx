@@ -7,12 +7,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const PropertyListing = () => {
     return (
         <div className="container mx-auto p-10">
-            <div className="space-y-4">
-            <h1 className="text-black text-3xl md:text-5xl lg:text-6xl max-w-full md:max-w-[80%] lg:max-w-[80%] tracking-tighter font-bold">Explore our quality properties</h1>
-            <p className="text-gray-500 text-base md:text-lg max-w-full md:max-w-[70%] lg:max-w-[80%]">Each listing unique features, exceptional service, and a commitment to excellence.</p>
+            <div className="space-y-5">
+                <div className="space-y-4 md:space-y-0 md:flex-row md:justify-center mb-5 w-full md:w-auto md:gap-4">
+                    <h1 className="text-black text-3xl md:text-5xl lg:text-6xl max-w-full md:max-w-[80%] lg:max-w-[80%] tracking-tighter font-bold">Explore our quality properties</h1>
+                    <p className="text-gray-500 text-base md:text-lg max-w-full md:max-w-[70%] lg:max-w-[80%]">Each listing unique features, exceptional service, and a commitment to excellence.</p>
+                </div>
+            
             
             {/* Filter Section */}
-            <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-end w-full md:w-auto md:gap-4">
+            <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-center mt-5 w-full md:w-auto md:gap-4">
                 {/* Search Input - Full width on mobile */}
                 <div className="w-full md:w-auto">
                     <Input type="text" placeholder="Search properties" className="w-full h-10" />
@@ -56,7 +59,7 @@ const PropertyListing = () => {
                         </SelectContent>
                     </Select>
                     
-                    <Button variant="ghost" className="w-full h-full md:px-10 md:py-5">
+                    <Button variant="ghost" className="w-full h:full md:h-10 md:px-10 md:py-5">
                         Search
                     </Button>
                 </div>
