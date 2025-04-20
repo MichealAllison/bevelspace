@@ -46,7 +46,7 @@ const ContactForm = () => {
                         </FormItem>
                     )}
                 />
-                <Button className="w-full py-5" variant="outline" type="submit">Submit</Button>
+                <Button className="w-full py-5" variant="ghost" type="submit">Submit</Button>
                 </form>
             </Form>
         </div>
