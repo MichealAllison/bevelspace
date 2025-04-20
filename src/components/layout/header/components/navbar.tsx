@@ -3,7 +3,7 @@ import NavbarItems from "./nabarItems";
 import { navbarConfig } from "./navbarConfig";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
+import Link from "next/link";
 interface NavbarProps {
     currentPath: string;
 }
@@ -13,7 +13,9 @@ const Navbar = ({ currentPath }: NavbarProps) => {
 
     return (
         <nav className="flex items-center justify-between px-4 sm:px-6 lg:px-8">
-            <p className="text-2xl font-bold text-white">Bevel Space</p>
+            <Link href="/">
+                <p className="text-2xl font-bold text-white">Bevel Space</p>
+            </Link>
             
             <button 
                 className="lg:hidden"

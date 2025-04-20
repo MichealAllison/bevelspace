@@ -9,7 +9,7 @@ export const navbarConfig = [
     },
     {
         label: "Properties",
-        path: "/properties",
+        path: "/property",
     },
     {
         label: "Contact Us",

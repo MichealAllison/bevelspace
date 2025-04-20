@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import PropertyCard from "@/features/listing/components/propertycard";
-import { properties } from "@/features/listing/data/propertyData";
+import PropertyCard from "@/features/property/components/propertycard";
+import { properties } from "@/features/property/data/propertyData";
 import { motion } from "framer-motion";
 
 const ExploreProperties = () => {
