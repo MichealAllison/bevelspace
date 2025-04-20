@@ -5,9 +5,10 @@ interface NavbarItemProps {
     isActive: boolean;
     path: string;
     className?: string;
+    onMobileNavClick?: () => void;
 }
 
-const NavbarItem = ({ label, isActive, path, className }: NavbarItemProps) => {
+const NavbarItem = ({ label, isActive, path, className, onMobileNavClick }: NavbarItemProps) => {
     return (
         <div className="w-full lg:w-auto">
             <Link 
@@ -16,6 +17,7 @@ const NavbarItem = ({ label, isActive, path, className }: NavbarItemProps) => {
                     isActive ? 'bg-white text-[#012D2A]' : 'text-gray-200 hover:bg-[#034642] hover:text-white'
                 } ${className || ''}`}
                 href={path}
+                onClick={onMobileNavClick}
             >
                 {label}
             </Link>

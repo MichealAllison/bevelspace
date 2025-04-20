@@ -20,9 +20,7 @@ const Navbar = ({ currentPath }: NavbarProps) => {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
-                {isMobileMenuOpen ? (
-                    <X className="h-6 w-6 text-white" />
-                ) : (
+                {!isMobileMenuOpen && (
                     <Menu className="h-6 w-6 text-white" />
                 )}
             </button>
@@ -32,10 +30,23 @@ const Navbar = ({ currentPath }: NavbarProps) => {
             </div>
 
             {isMobileMenuOpen && (
-                <div className="fixed inset-0 top-[64px] z-50 bg-black lg:hidden">
-                    <div className="flex flex-col p-4 space-y-4">
-                        <NavbarItems currentPath={currentPath} items={navbarConfig} />
-                        <div className="flex flex-col gap-4">
+                <div className="fixed inset-0 z-50 bg-black lg:hidden">
+                    <div className="flex flex-col p-4">
+                        <div className="flex justify-between items-center mb-6">
+                            <p className="text-2xl font-bold text-white">Bevel Space</p>
+                            <button
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                aria-label="Close menu"
+                            >
+                                <X className="h-6 w-6 text-white" />
+                            </button>
+                        </div>
+                        <NavbarItems 
+                            currentPath={currentPath} 
+                            items={navbarConfig} 
+                            onMobileNavClick={() => setIsMobileMenuOpen(false)}
+                        />
+                        <div className="flex flex-col gap-4 mt-4">
                             <Button variant="outline" className="w-full">Login</Button>
                             <Button variant="secondary" className="w-full">Sign Up</Button>
                         </div>

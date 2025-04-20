@@ -9,9 +9,10 @@ interface NavbarItem {
 interface NavbarItemsProps {
     currentPath: string;
     items: NavbarItem[];
+    onMobileNavClick?: () => void;
 }
 
-const NavbarItems = ({ currentPath, items }: NavbarItemsProps) => {
+const NavbarItems = ({ currentPath, items, onMobileNavClick }: NavbarItemsProps) => {
     return (
         <ul className="flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-10 p-2 lg:bg-gray-100/20 lg:rounded-full w-full lg:w-auto">
             {items.map((item, idx) => 
@@ -25,7 +26,8 @@ const NavbarItems = ({ currentPath, items }: NavbarItemsProps) => {
                                 label={subItem.label} 
                                 isActive={subItem.path === currentPath} 
                                 path={subItem.path} 
-                                className="w-full "
+                                className="w-full"
+                                onMobileNavClick={onMobileNavClick}
                             />
                         ))}
                     </ul>
@@ -37,6 +39,7 @@ const NavbarItems = ({ currentPath, items }: NavbarItemsProps) => {
                     isActive={item.path === currentPath} 
                     path={item.path} 
                     className="w-full lg:w-auto"
+                    onMobileNavClick={onMobileNavClick}
                 />
             ))}
         </ul>
