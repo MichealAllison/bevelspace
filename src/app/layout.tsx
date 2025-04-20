@@ -6,7 +6,7 @@ import Footer from "@/components/layout/footer/footer";
 export const metadata: Metadata = {
   title: "Bevel Space",
   description: "Where Real Estate Meets Clarity.",
-  keywords: ["real estate", "property management", "real estate technology", "property listings"],
+  keywords: ["real estate", "property management", "real estate technology", "property listings", "bevel space", "bevelspace"],
   authors: [{ name: "Bevel Space" }],
   openGraph: {
     title: "Bevel Space - Where Real Estate Meets Clarity",
