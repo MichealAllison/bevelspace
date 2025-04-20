@@ -1,6 +1,6 @@
 const MiddleFooter = () => {
     return (
-        <div className="mx-auto flex flex-col lg:flex-row items-center gap-6 lg:gap-0 justify-between text-gray-500 border-t border-b border-dotted-black-700 py-4">
+        <div className="mx-auto flex flex-col lg:flex-row items-center gap-6 lg:gap-0 justify-between text-gray-500 border-t-2 border-b-2 border-dashed border-gray-200 py-4">
             {/* Logo for mobile */}
             <div className="text-[#034642] text-2xl font-bold lg:hidden">Bevel Space</div>
             
