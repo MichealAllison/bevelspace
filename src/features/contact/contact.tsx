@@ -1,8 +1,7 @@
 'use client'
 import ContactHero from "./components/contactHero";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
-import ContactForm from "./components/contactForm";
-
+import ContactSection from "./components/contactSection";
 const Contact = () => {
     return (
         <div className="space-y-10">
@@ -10,7 +9,7 @@ const Contact = () => {
                 <ContactHero />
             </ScrollAnimation>
             <ScrollAnimation>
-                <ContactForm />
+                <ContactSection />
             </ScrollAnimation>
         </div>
     )

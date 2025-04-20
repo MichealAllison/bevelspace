@@ -1,22 +1,56 @@
-import Image from "next/image";
+import { FormControl, FormField, Form, FormLabel, FormItem } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useForm } from "react-hook-form";
+import { Button } from "@/components/ui/button";
 
 const ContactForm = () => {
+    const form = useForm();
     return (
-        <div className="container mx-auto px-4 py-12">
-            <div className="flex w-full justify-between">
-                <div className=" h-[500px] bg-gray-100 rounded-lg">
-                <Image src="/images/contactform.png" alt="Contact Form" width={500} height={500} />
-                </div>
-                <div className="p-10 h-[500px] bg-gray-100 rounded-lg">
-                <div className="space-y-4">
-                    <h1 className="text-4xl font-bold text-gray-900">Contact Us</h1>
-                    <p className="text-gray-800 text-2xl font-medium">We are here to help you with your real estate needs.</p>
-                </div>
-
-                </div>
-            </div>
+        <div>
+            <Form {...form}>
+                <form className="space-y-4">
+                    <FormField
+                        control={form.control}
+                        name="name"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                                <Input type="text" placeholder="Name" {...field} />
+                            </FormControl>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Email</FormLabel> 
+                            <FormControl>
+                                <Input type="email" placeholder="Email" {...field} />
+                            </FormControl>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Message</FormLabel>
+                            <FormControl>
+                                <Textarea placeholder="Message" {...field} />
+                            </FormControl>
+                        </FormItem>
+                    )}
+                />
+                <Button className="w-full py-5" variant="outline" type="submit">Submit</Button>
+                </form>
+            </Form>
         </div>
-    )
-}
+    );
+};
 
 export default ContactForm;
