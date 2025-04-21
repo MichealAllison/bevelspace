@@ -4,13 +4,14 @@ import { navbarConfig } from "./navbarConfig";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 interface NavbarProps {
     currentPath: string;
 }
 
 const Navbar = ({ currentPath }: NavbarProps) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+    const router = useRouter(); 
     return (
         <nav className="flex items-center justify-between px-4 sm:px-6 lg:px-8">
             <Link href="/">
@@ -49,16 +50,16 @@ const Navbar = ({ currentPath }: NavbarProps) => {
                             onMobileNavClick={() => setIsMobileMenuOpen(false)}
                         />
                         <div className="flex flex-col gap-4 mt-4">
-                            <Button variant="outline" className="w-full">Login</Button>
-                            <Button variant="secondary" className="w-full">Sign Up</Button>
+                            <Button variant="outline" className="w-full" onClick={() => router.push("/auth/login")}>Login</Button>
+                            <Button variant="secondary" className="w-full" onClick={() => router.push("/auth/signup")}>Sign Up</Button>
                         </div>
                     </div>
                 </div>
             )}
 
             <div className="hidden lg:flex items-center gap-4">
-                <Button variant="outline">Login</Button>
-                <Button variant="secondary">Sign Up</Button>
+                <Button variant="outline" onClick={() => router.push("/auth/login")}>Login</Button>
+                <Button variant="secondary" onClick={() => router.push("/auth/signup")}>Sign Up</Button>
             </div>
         </nav>
     )
