@@ -6,6 +6,9 @@ import Footer from "@/components/layout/footer/footer";
 export const metadata: Metadata = {
   title: "Bevel Space",
   description: "Where Real Estate Meets Clarity.",
+  icons: {
+    icon: '/favicon.ico',
+  },
   keywords: ["real estate", "property management", "real estate technology", "property listings", "bevel space", "bevelspace", 'buy', 'sell', 'rent', 'property', 'real estate', 'real estate agent', 'real estate company', 'real estate website', 'real estate marketing', 'real estate news', 'real estate blog', 'real estate agent website', 'real estate agent marketing', 'real estate agent blog'],
   authors: [{ name: "Bevel Space" }],
   openGraph: {
