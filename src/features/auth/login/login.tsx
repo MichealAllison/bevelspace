@@ -11,7 +11,7 @@ export const LoginPage = () => {
 
   return (
     <div className="min-h-screen bg-black flex flex-col justify-center py-6 px-4 sm:py-12 sm:px-6 lg:px-8" 
-         style={{ backgroundImage: `url('/images/contactheroimg.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+         style={{ backgroundImage: `url('/images/authbg.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="w-full sm:mt-50 sm:mb-50 sm:mx-auto sm:max-w-md">
         <div className="bg-white py-6 sm:py-8 px-4 shadow rounded-lg sm:px-10">
           <div className="flex flex-col items-center">
