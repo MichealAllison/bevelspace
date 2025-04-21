@@ -5,13 +5,35 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { UserProfileBadge } from "./userProfileBadge";
+
 interface NavbarProps {
     currentPath: string;
+    user?: {
+        name: string;
+        email: string;
+        image?: string;
+    } | null;
+    onSignOut?: () => void;
 }
 
-const Navbar = ({ currentPath }: NavbarProps) => {
+const Navbar = ({ currentPath, user, onSignOut }: NavbarProps) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const router = useRouter(); 
+    const router = useRouter();
+
+    const renderAuthButtons = () => {
+        if (user) {
+            return <UserProfileBadge user={user} onSignOut={onSignOut || (() => {})} />;
+        }
+
+        return (
+            <>
+                <Button variant="outline" onClick={() => router.push("/auth/login")}>Login</Button>
+                <Button variant="secondary" onClick={() => router.push("/auth/signup")}>Sign Up</Button>
+            </>
+        );
+    };
+
     return (
         <nav className="flex items-center justify-between px-4 sm:px-6 lg:px-8">
             <Link href="/">
@@ -50,19 +72,42 @@ const Navbar = ({ currentPath }: NavbarProps) => {
                             onMobileNavClick={() => setIsMobileMenuOpen(false)}
                         />
                         <div className="flex flex-col gap-4 mt-4">
-                            <Button variant="outline" className="w-full" onClick={() => router.push("/auth/login")}>Login</Button>
-                            <Button variant="secondary" className="w-full" onClick={() => router.push("/auth/signup")}>Sign Up</Button>
+                            {user ? (
+                                <UserProfileBadge user={user} onSignOut={onSignOut || (() => {})} />
+                            ) : (
+                                <>
+                                    <Button 
+                                        variant="outline" 
+                                        className="w-full" 
+                                        onClick={() => {
+                                            setIsMobileMenuOpen(false);
+                                            router.push("/auth/login");
+                                        }}
+                                    >
+                                        Login
+                                    </Button>
+                                    <Button 
+                                        variant="secondary" 
+                                        className="w-full" 
+                                        onClick={() => {
+                                            setIsMobileMenuOpen(false);
+                                            router.push("/auth/signup");
+                                        }}
+                                    >
+                                        Sign Up
+                                    </Button>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
             )}
 
             <div className="hidden lg:flex items-center gap-4">
-                <Button variant="outline" onClick={() => router.push("/auth/login")}>Login</Button>
-                <Button variant="secondary" onClick={() => router.push("/auth/signup")}>Sign Up</Button>
+                {renderAuthButtons()}
             </div>
         </nav>
-    )
-}
+    );
+};
 
 export default Navbar;
