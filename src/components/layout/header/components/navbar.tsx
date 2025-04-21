@@ -55,7 +55,7 @@ const Navbar = ({ currentPath, user, onSignOut }: NavbarProps) => {
             </div>
 
             {isMobileMenuOpen && (
-                <div className="fixed inset-0 z-50 bg-black lg:hidden">
+                <div className="fixed inset-0 z-50 bg-[#222622] lg:hidden">
                     <div className="flex flex-col p-4">
                         <div className="flex justify-between items-center mb-6">
                             <p className="text-2xl font-bold text-white">Bevel Space</p>

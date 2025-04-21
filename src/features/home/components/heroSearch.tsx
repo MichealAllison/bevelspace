@@ -28,7 +28,7 @@ const roomOptions = [
 const HeroSearch = () => {
     return (
         <div className="flex flex-col space-y-6 lg:space-y-10 justify-center items-center mt-10 bg-white rounded-lg p-4 lg:p-5 w-full max-w-[95%] mx-auto lg:max-w-none">
-            <h1 className="text-2xl lg:text-4xl font-bold text-center">Find your dream home</h1>
+            <h1 className="text-2xl lg:text-4xl font-bold text-[#222622] text-center">Find your dream home</h1>
             
             <div className="flex flex-col lg:flex-row w-full lg:w-auto items-stretch lg:items-center gap-4 lg:gap-4 justify-center">
                 {/* Looking for */}

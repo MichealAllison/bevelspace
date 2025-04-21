@@ -9,8 +9,8 @@ const PropertyListing = () => {
         <div className="container mx-auto p-10">
             <div className="space-y-5">
                 <div className="space-y-4 md:space-y-0 md:flex-row md:justify-center mb-5 w-full md:w-auto md:gap-4">
-                    <h1 className="text-black text-3xl md:text-5xl lg:text-6xl max-w-full md:max-w-[80%] lg:max-w-[80%] tracking-tighter font-bold">Explore our quality properties</h1>
-                    <p className="text-gray-500 text-base md:text-lg max-w-full md:max-w-[70%] lg:max-w-[80%]">Each listing unique features, exceptional service, and a commitment to excellence.</p>
+                    <h1 className="text-[#222622] text-3xl md:text-5xl lg:text-6xl max-w-full md:max-w-[80%] lg:max-w-[80%] tracking-tighter font-bold">Explore our quality properties</h1>
+                    <p className="text-[#545952] text-base md:text-lg max-w-full md:max-w-[70%] lg:max-w-[80%]">Each listing unique features, exceptional service, and a commitment to excellence.</p>
                 </div>
             
             

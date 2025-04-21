@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import FeaturesCards from "./featuresCards";
 import { Button } from "@/components/ui/button";
-
+import { ArrowRight } from "lucide-react";
 const Hero = () => {
     return (
         <div className="w-full h-[80vh] lg:h-[100vh] bg-cover bg-center" style={{ backgroundImage: `url('/images/heroimg.png')` }}>
@@ -35,7 +35,9 @@ const Hero = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <Button variant="secondary" className="bg-white text-black">Get Started</Button>
+                            <Button variant="secondary" className="bg-[#D9D9D9] text-[##222622]">Get Started
+                                <ArrowRight className="w-4 h-4" />
+                            </Button>
                         </motion.div>
                     </div>
                 </div>

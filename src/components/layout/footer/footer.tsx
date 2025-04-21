@@ -5,7 +5,7 @@ import BottomFooter from "./components/bottomFooter";
 
 const Footer = () => {
     return (
-        <footer className=" bg-gray-100 mt-10 py-4 lg:py-8 space-y-10 px-4 sm:px-6 lg:px-8">
+        <footer className=" bg-[#D9D9D9] mt-10 py-4 lg:py-8 space-y-10 px-4 sm:px-6 lg:px-8">
             <TopFooter />
             <MiddleFooter />
             <BottomFooter />

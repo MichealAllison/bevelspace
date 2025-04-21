@@ -35,21 +35,21 @@ const PropertyCard = ({ id, image, title, location, price, bedrooms, bathrooms }
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-1 sm:gap-2">
                         <Bed className="w-3 h-3 sm:w-4 sm:h-4" />
-                        <p className="text-xs sm:text-sm font-medium">{bedrooms} Bedrooms</p>
+                        <p className="text-xs sm:text-sm text-[#545952] font-medium">{bedrooms} Bedrooms</p>
                     </div>
                     <div className="flex items-center gap-1 sm:gap-2">
                         <Bath className="w-3 h-3 sm:w-4 sm:h-4" />
-                        <p className="text-xs sm:text-sm font-medium">{bathrooms} Bathrooms</p>
+                        <p className="text-xs sm:text-sm text-[#545952] font-medium">{bathrooms} Bathrooms</p>
                     </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl sm:text-2xl font-bold line-clamp-2">{title}</h3>
+                <h3 className="text-xl sm:text-2xl text-[#222622] font-bold line-clamp-2">{title}</h3>
 
                 {/* Price and Location */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                    <p className="text-base sm:text-lg font-bold">{formatNumber(price)}</p>
-                    <p className="text-xs sm:text-sm text-gray-500">{location}</p>
+                    <p className="text-base sm:text-lg text-[#222622] font-bold">{formatNumber(price)}</p>
+                    <p className="text-xs sm:text-sm text-[#545952">{location}</p>
                 </div>
             </div>
         </Link>

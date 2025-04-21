@@ -14,7 +14,7 @@ interface NavbarItemsProps {
 
 const NavbarItems = ({ currentPath, items, onMobileNavClick }: NavbarItemsProps) => {
     return (
-        <ul className="flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-10 p-2 lg:bg-gray-100/20 lg:rounded-full w-full lg:w-auto">
+        <ul className="flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-10 p-2 lg:bg-[#545952]/50 lg:rounded-full w-full lg:w-auto">
             {items.map((item, idx) => 
             item.items ? (
                 <div className="space-y-2 lg:space-y-0 lg:space-x-2 w-full lg:w-auto" key={idx}>

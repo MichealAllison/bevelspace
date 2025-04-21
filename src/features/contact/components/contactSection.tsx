@@ -15,8 +15,8 @@ const ContactSection = () => {
                     />
                 </div>
                 <div className="w-full md:w-[40%] space-y-5">
-                    <h1 className="text-3xl md:text-4xl font-bold text-center md:text-left">Contact Us</h1>
-                    <p className="text-gray-800 text-2xl font-medium text-center md:text-left">We are here to help you with your real estate needs.</p>
+                    <h1 className="text-[#222622] text-3xl md:text-4xl font-bold text-center md:text-left">Contact Us</h1>
+                    <p className="text-[#545952] text-2xl font-medium text-center md:text-left">We are here to help you with your real estate needs.</p>
                     <ContactForm/>
                 </div>
             </div>
