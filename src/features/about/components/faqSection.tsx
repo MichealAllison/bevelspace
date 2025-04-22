@@ -8,7 +8,7 @@ const FAQSection = () => {
                 <div className="w-full md:w-1/2">
                     <Image 
                         src="/images/faq.png" 
-                        alt="FAQ" 
+                        alt="bevelspace faq" 
                         width={500} 
                         height={500}
                         className="w-full h-auto" 

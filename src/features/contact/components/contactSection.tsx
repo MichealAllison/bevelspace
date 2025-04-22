@@ -8,7 +8,7 @@ const ContactSection = () => {
                 <div className="w-full md:w-[40%]">
                     <Image 
                         src="/images/contact.png" 
-                        alt="FAQ" 
+                        alt="bevelspace contact" 
                         width={500} 
                         height={500}
                         className="w-full h-auto" 
