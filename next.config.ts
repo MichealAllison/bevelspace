@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['via.placeholder.com'],
   },
+  sitemapBaseUrl: 'https://bevelspace.vercel.app',
 };
 
 export default nextConfig;

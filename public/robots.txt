@@ -1,0 +1,36 @@
+# Bevel Space robots.txt
+
+# Allow all robots full access
+User-agent: *
+Allow: /
+
+# Specific directives for Google
+User-agent: Googlebot
+Allow: /
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.gif$
+Allow: /*.svg$
+
+# Specific directives for Bing
+User-agent: Bingbot
+Allow: /
+
+# Block access to API routes
+Disallow: /api/
+
+# Block access to admin routes (if you have any)
+Disallow: /admin/
+
+# Allow access to static assets
+Allow: /images/
+Allow: /fonts/
+Allow: /icons/
+
+# Crawl-delay for all bots
+Crawl-delay: 1
+
+# Sitemap location (you should create this)
+Sitemap: https://bevelspace.vercel.app/sitemap.xml
