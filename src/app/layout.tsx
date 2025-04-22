@@ -4,43 +4,83 @@ import "./globals.css";
 import Footer from "@/components/layout/footer/footer";
 
 export const metadata: Metadata = {
-  title: "Bevel Space",
-  description: "Where Real Estate Meets Clarity.",
+  title: "Bevel Space | Modern Real Estate Platform",
+  description: "Bevel Space - The innovative real estate platform that transforms property buying, selling, and management. Where Real Estate Meets Clarity with cutting-edge technology and seamless experience.",
   icons: {
     icon: '/favicon.ico',
   },
-  keywords: ["real estate", "property management", "real estate technology", "property listings", "bevel space", "bevelspace", 'buy', 'sell', 'rent', 'property', 'real estate', 'real estate agent', 'real estate company', 'real estate website', 'real estate marketing', 'real estate news', 'real estate blog', 'real estate agent website', 'real estate agent marketing', 'real estate agent blog'],
+  keywords: [
+    "bevel space",
+    "bevelspace",
+    "real estate platform",
+    "property search",
+    "property management",
+    "real estate technology",
+    "property listings",
+    "buy property",
+    "sell property",
+    "rent property",
+    "real estate agent",
+    "real estate company",
+    "property technology",
+    "proptech",
+    "real estate marketplace",
+    "modern real estate",
+    "digital real estate platform",
+    "real estate solutions",
+    "property search engine",
+    "real estate innovation"
+  ],
   authors: [{ name: "Bevel Space" }],
+  creator: "Bevel Space",
+  publisher: "Bevel Space",
   openGraph: {
-    title: "Bevel Space - Where Real Estate Meets Clarity",
-    description: "Transform your real estate experience with Bevel Space's innovative platform.",
+    title: "Bevel Space | Where Real Estate Meets Clarity",
+    description: "Transform your real estate experience with Bevel Space - the innovative platform revolutionizing property buying, selling, and management with cutting-edge technology.",
     type: "website",
     url: "https://bevelspace.vercel.app/",
     siteName: "Bevel Space",
     locale: "en_US",
     images: [
       {
-       url:'images/bevelspacelogo.png',
+        url: '/images/bevelspacelogo.png',
         width: 1200,
         height: 630,
-        alt: "Bevel Space - Where Real Estate Meets Clarity",
+        alt: "Bevel Space - Modern Real Estate Platform",
+        type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bevel Space - Where Real Estate Meets Clarity",
-    description: "Transform your real estate experience with Bevel Space's innovative platform.",
+    site: "@bevelspace",
+    title: "Bevel Space | Modern Real Estate Platform",
+    description: "Transform your real estate experience with Bevel Space - the innovative platform revolutionizing property buying, selling, and management.",
     images: [
       {
-        url: "images/bevelspacelogo.png",
+        url: "/images/bevelspacelogo.png",
         width: 1200,
+        height: 630,
+        alt: "Bevel Space - Modern Real Estate Platform",
       },
     ],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: "Add-your-google-verification-code",
+  },
+  alternates: {
+    canonical: 'https://bevelspace.vercel.app',
   },
 };
 
