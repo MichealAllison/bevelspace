@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   const login = async (email: string, password: string) => {
-    const response = await AuthService.login(email, password);
+    const response = await AuthService.login({ email, password });
     TokenService.setTokens(response.accessToken, response.refreshToken);
     setUser(response.user);
     setIsAuthenticated(true);
@@ -46,6 +46,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(response.user);
         setIsAuthenticated(true);
       } catch (error) {
+        console.error('Refresh token error:', error);
         logout();
       }
     }

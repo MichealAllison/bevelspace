@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { AuthService } from '@/services/auth.service';
-import { TokenService } from '@/services/token.service';
 import { useRouter } from 'next/navigation';
 
 // Define the form validation schema
@@ -34,7 +33,6 @@ type SignupFormData = z.infer<typeof signupSchema>;
 
 export const SignupForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   
   const {
@@ -49,16 +47,21 @@ export const SignupForm = () => {
   const handleFormSubmit = async (data: SignupFormData) => {
     try {
       setIsSubmitting(true);
-      setError(null);
       
-      const response = await AuthService.register(data);
+      await AuthService.register({
+        email: data.email,
+        password: data.password,
+        confirmPassword: data.confirm_password,
+        firstName: data.first_name,
+        lastName: data.last_name,
+        userName: data.username,
+      });
       
       reset();
       // Redirect to login page instead of dashboard
       router.push('/auth/login');
     } catch (error) {
       console.error('Signup error:', error);
-      setError(error instanceof Error ? error.message : 'Registration failed');
     } finally {
       setIsSubmitting(false);
     }
