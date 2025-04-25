@@ -1,7 +1,7 @@
 "use client"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Settings, LogOut, HelpCircle, User, ChevronDown, Heart, Home } from "lucide-react"
+import { Settings, LogOut, HelpCircle, User, Heart, Home } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
