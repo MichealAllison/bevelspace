@@ -51,12 +51,10 @@ export function UserProfileBadge({ user, onSignOut }: UserProfileBadgeProps) {
         throw new Error(`Logout failed: ${response.status} ${response.statusText}`);
       }
 
-      // Only call onSignOut if the logout was successful
       onSignOut();
     } catch (error) {
       console.error('Logout error:', error);
-      // You might want to show an error message to the user here
-      // For example, using a toast notification
+      
     }
   };
 
@@ -74,7 +72,6 @@ export function UserProfileBadge({ user, onSignOut }: UserProfileBadgeProps) {
             )}
           </Avatar>
           <span className="text-sm font-medium text-white">{user.name}</span>
-          <ChevronDown className="h-4 w-4 text-white opacity-50" />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">

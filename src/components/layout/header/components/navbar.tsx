@@ -19,16 +19,18 @@ const Navbar = ({ currentPath }: NavbarProps) => {
                 <p className="text-2xl font-bold text-white">Bevel Space</p>
             </Link>
             
-            <Button 
-                variant="ghost"
-                className="lg:hidden"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-            >
-                {!isMobileMenuOpen && (
-                    <Menu className="h-6 w-6 text-white" />
-                )}
-            </Button>
+            <div className="flex items-center gap-4 lg:hidden">
+                {renderAuthButtons()}
+                <Button 
+                    variant="ghost"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                >
+                    {!isMobileMenuOpen && (
+                        <Menu className="h-6 w-6 text-white" />
+                    )}
+                </Button>
+            </div>
 
             <div className="hidden lg:block">
                 <NavbarItems currentPath={currentPath} items={navbarConfig} />
@@ -51,9 +53,6 @@ const Navbar = ({ currentPath }: NavbarProps) => {
                             items={navbarConfig} 
                             onMobileNavClick={() => setIsMobileMenuOpen(false)}
                         />
-                        <div className="flex flex-col gap-4 mt-4">
-                            {renderAuthButtons()}
-                        </div>
                     </div>
                 </div>
             )}
