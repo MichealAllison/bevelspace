@@ -7,39 +7,27 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { AuthService } from '@/services/auth.service';
+import { TokenService } from '@/services/token.service';
+import { useRouter } from 'next/navigation';
 
 // Define the form validation schema
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email'),
-  password: z
-    .string()
-    .min(8, 'Password must be at least 8 characters')
-    .regex(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-      'Password must contain at least one uppercase letter, one lowercase letter, and one number'
-    ),
-  confirmPassword: z.string(),
-  fullName: z.string(),
-  phone: z.string(),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
+  password: z.string().min(1, 'Password is required'),
 });
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
-interface LoginFormProps {
-  onSubmit: (data: LoginFormData) => Promise<void>;
-}
-
-export const LoginForm = ({ onSubmit }: LoginFormProps) => {
+export const LoginForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
   
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
@@ -47,10 +35,25 @@ export const LoginForm = ({ onSubmit }: LoginFormProps) => {
   const handleFormSubmit = async (data: LoginFormData) => {
     try {
       setIsSubmitting(true);
-      await onSubmit(data);
-      reset();
+      setError(null);
+      
+      console.log('Submitting login data:', data);
+      
+      const response = await AuthService.login(data);
+      console.log('Login response in form:', response);
+      
+      // Store tokens
+      if (!response.accessToken || !response.refreshToken) {
+        throw new Error('Invalid token data received');
+      }
+      
+      TokenService.setTokens(response.accessToken, response.refreshToken);
+      
+      // Redirect to dashboard
+      router.push('/');
     } catch (error) {
       console.error('Login error:', error);
+      setError(error instanceof Error ? error.message : 'Login failed');
     } finally {
       setIsSubmitting(false);
     }
@@ -58,7 +61,12 @@ export const LoginForm = ({ onSubmit }: LoginFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6 max-w-md mx-auto">
-
+      {error && (
+        <div className="p-3 text-sm text-red-600 bg-red-50 rounded-md">
+          {error}
+        </div>
+      )}
+      
       <div>
         <Label htmlFor="email" className="block text-sm font-medium text-gray-700">
           Email
@@ -84,23 +92,24 @@ export const LoginForm = ({ onSubmit }: LoginFormProps) => {
           type="password"
           id="password"
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#034642] focus:ring-[#034642]"
-          placeholder="eg. Password123"
+          placeholder="Enter your password"
         />
         {errors.password && (
           <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
         )}
       </div>
 
-
-
       <Button
-        type="submit" variant="ghost"
+        type="submit"
+        variant="ghost"
         disabled={isSubmitting}
         className="w-full py-5"
       >
-        {isSubmitting ? 'Signing in...' : 'Sign In'}
+        {isSubmitting ? 'Logging in...' : 'Login'}
       </Button>
-      <p className="text-center text-gray-500">Don&apos;t have an account? <Link href="/auth/signup" className="text-[#034642]">Sign Up</Link></p>
+      <p className="text-center text-gray-500">
+        Don&apos;t have an account? <Link href="/auth/signup" className="text-[#034642]">Sign Up</Link>
+      </p>
     </form>
   );
 };

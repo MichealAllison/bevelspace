@@ -4,35 +4,15 @@ import { navbarConfig } from "./navbarConfig";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { UserProfileBadge } from "./userProfileBadge";
+import { useAuthButtons } from "@/hooks/useAuthButtons";
 
 interface NavbarProps {
     currentPath: string;
-    user?: {
-        name: string;
-        email: string;
-        image?: string;
-    } | null;
-    onSignOut?: () => void;
 }
 
-const Navbar = ({ currentPath, user, onSignOut }: NavbarProps) => {
+const Navbar = ({ currentPath }: NavbarProps) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const router = useRouter();
-
-    const renderAuthButtons = () => {
-        if (user) {
-            return <UserProfileBadge user={user} onSignOut={onSignOut || (() => {})} />;
-        }
-
-        return (
-            <>
-                <Button variant="outline" onClick={() => router.push("/auth/login")}>Login</Button>
-                <Button variant="secondary" onClick={() => router.push("/auth/signup")}>Sign Up</Button>
-            </>
-        );
-    };
+    const { renderAuthButtons } = useAuthButtons();
 
     return (
         <nav className="flex items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -40,7 +20,8 @@ const Navbar = ({ currentPath, user, onSignOut }: NavbarProps) => {
                 <p className="text-2xl font-bold text-white">Bevel Space</p>
             </Link>
             
-            <button 
+            <Button 
+                variant="ghost"
                 className="lg:hidden"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
@@ -48,7 +29,7 @@ const Navbar = ({ currentPath, user, onSignOut }: NavbarProps) => {
                 {!isMobileMenuOpen && (
                     <Menu className="h-6 w-6 text-white" />
                 )}
-            </button>
+            </Button>
 
             <div className="hidden lg:block">
                 <NavbarItems currentPath={currentPath} items={navbarConfig} />
@@ -72,32 +53,7 @@ const Navbar = ({ currentPath, user, onSignOut }: NavbarProps) => {
                             onMobileNavClick={() => setIsMobileMenuOpen(false)}
                         />
                         <div className="flex flex-col gap-4 mt-4">
-                            {user ? (
-                                <UserProfileBadge user={user} onSignOut={onSignOut || (() => {})} />
-                            ) : (
-                                <>
-                                    <Button 
-                                        variant="outline" 
-                                        className="w-full" 
-                                        onClick={() => {
-                                            setIsMobileMenuOpen(false);
-                                            router.push("/auth/login");
-                                        }}
-                                    >
-                                        Login
-                                    </Button>
-                                    <Button 
-                                        variant="secondary" 
-                                        className="w-full" 
-                                        onClick={() => {
-                                            setIsMobileMenuOpen(false);
-                                            router.push("/auth/signup");
-                                        }}
-                                    >
-                                        Sign Up
-                                    </Button>
-                                </>
-                            )}
+                            {renderAuthButtons()}
                         </div>
                     </div>
                 </div>

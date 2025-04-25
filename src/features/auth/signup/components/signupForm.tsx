@@ -7,6 +7,9 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { AuthService } from '@/services/auth.service';
+import { TokenService } from '@/services/token.service';
+import { useRouter } from 'next/navigation';
 
 // Define the form validation schema
 const signupSchema = z.object({
@@ -18,22 +21,21 @@ const signupSchema = z.object({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
       'Password must contain at least one uppercase letter, one lowercase letter, and one number'
     ),
-  confirmPassword: z.string(),
-  fullName: z.string(),
-  phone: z.string(),
-}).refine((data) => data.password === data.confirmPassword, {
+  confirm_password: z.string(),
+  first_name: z.string(),
+  last_name: z.string(),
+  username: z.string(),
+}).refine((data) => data.password === data.confirm_password, {
   message: "Passwords don't match",
-  path: ["confirmPassword"],
+  path: ["confirm_password"],
 });
 
 type SignupFormData = z.infer<typeof signupSchema>;
 
-interface SignupFormProps {
-  onSubmit: (data: SignupFormData) => Promise<void>;
-}
-
-export const SignupForm = ({ onSubmit }: SignupFormProps) => {
+export const SignupForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
   
   const {
     register,
@@ -47,10 +49,16 @@ export const SignupForm = ({ onSubmit }: SignupFormProps) => {
   const handleFormSubmit = async (data: SignupFormData) => {
     try {
       setIsSubmitting(true);
-      await onSubmit(data);
+      setError(null);
+      
+      const response = await AuthService.register(data);
+      
       reset();
+      // Redirect to login page instead of dashboard
+      router.push('/auth/login');
     } catch (error) {
       console.error('Signup error:', error);
+      setError(error instanceof Error ? error.message : 'Registration failed');
     } finally {
       setIsSubmitting(false);
     }
@@ -59,18 +67,48 @@ export const SignupForm = ({ onSubmit }: SignupFormProps) => {
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6 max-w-md mx-auto">
       <div>
-        <Label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
-          Full Name
+        <Label htmlFor="username" className="block text-sm font-medium text-gray-700">
+          Username
         </Label>
         <Input
-          {...register('fullName')}
+          {...register('username')}
           type="text"
-          id="fullName"
+          id="username"
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#034642] focus:ring-[#034642]"
-          placeholder="eg. John Doe"
+          placeholder="Enter your username"
         />
-        {errors.email && (
-          <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+        {errors.username && (
+          <p className="mt-1 text-sm text-red-600">{errors.username.message}</p>
+        )}
+      </div>
+      <div>
+        <Label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
+          First Name
+        </Label>
+        <Input
+          {...register('first_name')}
+          type="text"
+          id="first_name"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#034642] focus:ring-[#034642]"
+          placeholder="Enter your first name"
+        />
+        {errors.first_name && (
+          <p className="mt-1 text-sm text-red-600">{errors.first_name.message}</p>
+        )}
+      </div>
+      <div>
+        <Label htmlFor="last_name" className="block text-sm font-medium text-gray-700">
+          Last Name
+        </Label>
+        <Input
+          {...register('last_name')}
+          type="text"
+          id="last_name"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#034642] focus:ring-[#034642]"
+          placeholder="Enter your last name"
+        />
+        {errors.last_name && (
+          <p className="mt-1 text-sm text-red-600">{errors.last_name.message}</p>
         )}
       </div>
       <div>
@@ -88,7 +126,7 @@ export const SignupForm = ({ onSubmit }: SignupFormProps) => {
           <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
         )}
       </div>
-      <div>
+      {/* <div>
         <Label htmlFor="phone" className="block text-sm font-medium text-gray-700">
           Phone Number
         </Label>
@@ -102,7 +140,7 @@ export const SignupForm = ({ onSubmit }: SignupFormProps) => {
         {errors.phone && (
           <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
         )}
-      </div>
+      </div> */}
 
       <div>
         <Label htmlFor="password" className="block text-sm font-medium text-gray-700">
@@ -113,7 +151,7 @@ export const SignupForm = ({ onSubmit }: SignupFormProps) => {
           type="password"
           id="password"
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#034642] focus:ring-[#034642]"
-          placeholder="eg. Password123"
+          placeholder="Enter your password"
         />
         {errors.password && (
           <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
@@ -121,18 +159,18 @@ export const SignupForm = ({ onSubmit }: SignupFormProps) => {
       </div>
 
       <div>
-        <Label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+        <Label htmlFor="confirm_password" className="block text-sm font-medium text-gray-700">
           Confirm Password
         </Label>
         <Input
-          {...register('confirmPassword')}
+          {...register('confirm_password')}
           type="password"
-          id="confirmPassword"
+          id="confirm_password"
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#034642] focus:ring-[#034642]"
-          placeholder="eg. Password123"
+          placeholder="Confirm your password"
         />
-        {errors.confirmPassword && (
-          <p className="mt-1 text-sm text-red-600">{errors.confirmPassword.message}</p>
+        {errors.confirm_password && (
+          <p className="mt-1 text-sm text-red-600">{errors.confirm_password.message}</p>
         )}
       </div>
 

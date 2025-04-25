@@ -3,12 +3,6 @@
 import { LoginForm } from './components/loginForm';
 
 export const LoginPage = () => {
-  const handleLogin = async (data: unknown) => {
-    // Here you would implement your signup logic
-    // For example, calling an API endpoint
-    console.log('Login data:', data);
-  };
-
   return (
     <div className="min-h-screen bg-black flex flex-col justify-center py-6 px-4 sm:py-12 sm:px-6 lg:px-8" 
          style={{ backgroundImage: `url('/images/authbg.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
@@ -20,7 +14,7 @@ export const LoginPage = () => {
             </h2>
             <p className="text-center text-sm sm:text-base text-gray-500">Login to your account</p>
           </div>
-          <LoginForm onSubmit={handleLogin} />
+          <LoginForm />
         </div>
       </div>
     </div>

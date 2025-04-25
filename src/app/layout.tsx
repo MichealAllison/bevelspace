@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/header/header";
 import "./globals.css";
 import Footer from "@/components/layout/footer/footer";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 export const metadata: Metadata = {
   title: "Bevel Space | Modern Real Estate Platform",
@@ -90,12 +91,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="min-h-screen relative">
-        <Header/>
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body className="min-h-screen relative">
+          <Header/>
+          {children}
+          <Footer />
+        </body>
+      </html>
+    </AuthProvider>
   );
 }
