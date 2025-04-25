@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { UserProfileBadge } from "@/components/layout/header/components/userProfileBadge";
@@ -6,7 +6,13 @@ import { useAuth } from "@/contexts/AuthContext";
 
 export const useAuthButtons = () => {
     const router = useRouter();
-    const { user, logout } = useAuth();
+    const { user, logout, isAuthenticated } = useAuth();
+    
+    console.log('Current user in useAuthButtons:', user);
+
+    useEffect(() => {
+        console.log('Auth state changed:', { user, isAuthenticated });
+    }, [user, isAuthenticated]);
 
     const renderAuthButtons = useCallback(() => {
         if (user) {

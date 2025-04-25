@@ -111,9 +111,38 @@ export class AuthService {
         body: JSON.stringify({ refresh: refreshToken }),
       });
 
-      return this.handleResponse<AuthResponse>(response);
+      const data = await this.handleResponse<{access: string, refresh: string}>(response);
+      
+      // Since refresh token endpoint doesn't return user data, we need to get it from the token
+      const tokenData = this.parseJwt(data.access);
+      
+      return {
+        accessToken: data.access,
+        refreshToken: data.refresh,
+        user: {
+          email: tokenData.email,
+          name: tokenData.name || tokenData.username,
+          userName: tokenData.username
+        }
+      };
     } catch (error) {
       throw this.handleError(error as Error);
+    }
+  }
+
+  // Add this helper method to parse JWT tokens
+  private static parseJwt(token: string) {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        return JSON.parse(jsonPayload);
+    } catch (e) {
+        console.error('Error parsing JWT:', e);
+        return {};
     }
   }
 

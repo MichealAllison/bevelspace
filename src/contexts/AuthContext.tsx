@@ -25,10 +25,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   const login = async (email: string, password: string) => {
-    const response = await AuthService.login({ email, password });
-    TokenService.setTokens(response.accessToken, response.refreshToken);
-    setUser(response.user);
-    setIsAuthenticated(true);
+    try {
+      const response = await AuthService.login({ email, password });
+      console.log('Login response:', response);
+      
+      if (!response.accessToken || !response.refreshToken) {
+        throw new Error('Invalid token data received');
+      }
+      
+      TokenService.setTokens(response.accessToken, response.refreshToken);
+      console.log('Tokens stored:', {
+        access: TokenService.getAccessToken(),
+        refresh: TokenService.getRefreshToken()
+      });
+      
+      setUser(response.user);
+      setIsAuthenticated(true);
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
+    }
   };
 
   const logout = () => {
@@ -39,16 +55,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const refreshAuth = async () => {
     const refreshToken = TokenService.getRefreshToken();
-    if (refreshToken) {
-      try {
-        const response = await AuthService.refreshToken(refreshToken);
-        TokenService.setTokens(response.accessToken, response.refreshToken);
-        setUser(response.user);
-        setIsAuthenticated(true);
-      } catch (error) {
-        console.error('Refresh token error:', error);
-        logout();
-      }
+    console.log('Attempting refresh with token:', refreshToken);
+    
+    if (!refreshToken) {
+      console.log('No refresh token found, logging out');
+      logout();
+      return;
+    }
+
+    try {
+      const response = await AuthService.refreshToken(refreshToken);
+      console.log('Refresh successful:', response);
+      
+      TokenService.setTokens(response.accessToken, response.refreshToken);
+      setUser(response.user);
+      setIsAuthenticated(true);
+    } catch (error) {
+      console.error('Refresh failed:', error);
+      logout();
     }
   };
 

@@ -5,7 +5,6 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { useAuthButtons } from "@/hooks/useAuthButtons";
-
 interface NavbarProps {
     currentPath: string;
 }
