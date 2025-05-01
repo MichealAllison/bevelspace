@@ -5,7 +5,10 @@ import Footer from "@/components/layout/footer/footer";
 import { AuthProvider } from "@/contexts/AuthContext";
 
 export const metadata: Metadata = {
-  title: "Bevel Space | Modern Real Estate Platform",
+  title: {
+    default: "Bevel Space | Modern Real Estate Platform",
+    template: "%s | Bevel Space",
+  },
   description: "Bevel Space - The innovative real estate platform that transforms property buying, selling, and management. Where Real Estate Meets Clarity with cutting-edge technology and seamless experience.",
   icons: {
     icon: '/favicon.ico',
