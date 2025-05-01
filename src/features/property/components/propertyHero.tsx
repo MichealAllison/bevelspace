@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const PropertyHero = () => {
     return (
-        <div className="w-full h-[50vh] lg:h-[70vh] bg-cover bg-center" style={{ backgroundImage: `url('/images/propertyheroimg.png')` }}>
+        <div className="w-full h-[40vh] lg:h-[70vh] bg-cover bg-center" style={{ backgroundImage: `url('/images/propertyheroimg.png')` }}>
             <div className="mx-auto container pb-20 pt-50 md:pt-32 lg:pt-60">
                 <div className="space-y-4 p-4 md:p-6 lg:p-10">
                     <motion.div

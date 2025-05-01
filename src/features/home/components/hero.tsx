@@ -17,7 +17,7 @@ const Hero = () => {
                 sizes="100vw"
                 quality={90}
             />
-            <div className="relative mx-auto container pb-20 pt-40 md:pt-32 lg:pt-100">
+            <div className="relative mx-auto container pb-20 pt-20 md:pt-32 lg:pt-70">
                 {/* Hero content*/}
                 <div className="space-y-4 p-4 md:p-6 lg:p-10">
                     <motion.div
