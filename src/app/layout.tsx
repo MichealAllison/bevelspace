@@ -96,6 +96,19 @@ export default function RootLayout({
   return (
     <AuthProvider>
       <html lang="en">
+        <head>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'Organization',
+                name: 'Bevel Space',
+                url: 'https://bevelspace.vercel.app',
+              })
+            }}
+          />
+        </head>
         <body className="min-h-screen relative">
           <Header/>
           {children}
