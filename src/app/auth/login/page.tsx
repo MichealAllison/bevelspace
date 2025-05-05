@@ -1,5 +1,6 @@
 import { LoginForm } from '@/features/auth/login/components/loginForm';
 import { Metadata } from 'next';
+import { StructuredData } from '@/components/seo/StructuredData';
 
 export const metadata: Metadata = {
     title: "Login",
@@ -23,10 +24,7 @@ const structuredData = {
 export default function LoginPage() {
   return (
     <>
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <StructuredData data={structuredData} id="login-schema" />
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
         style={{ backgroundImage: `url('/images/authbg.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="max-w-md w-full space-y-8 bg-white py-6 sm:py-8 px-4 shadow rounded-lg sm:px-10">

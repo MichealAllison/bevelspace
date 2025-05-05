@@ -1,5 +1,6 @@
 import Property from "@/features/property/property";
 import { Metadata } from "next";
+import { StructuredData } from "@/components/seo/StructuredData";
 
 export const metadata: Metadata = {
     title: "Property",
@@ -21,10 +22,7 @@ const structuredData = {
 export default function PropertyPage() {
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-            />
+            <StructuredData data={structuredData} id="property-schema" />
             <Property />
         </>
     )

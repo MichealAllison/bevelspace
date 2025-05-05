@@ -1,5 +1,6 @@
 import Signup from "@/features/auth/signup/signup";
 import { Metadata } from "next";
+import { StructuredData } from "@/components/seo/StructuredData";
 
 export const metadata: Metadata = {
     title: "Create Account | Bevel Space",
@@ -26,10 +27,7 @@ const structuredData = {
 export default function SignupPage() {
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-            />
+            <StructuredData data={structuredData} id="signup-schema" />
             <Signup />
         </>
     )

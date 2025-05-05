@@ -1,5 +1,6 @@
 import About from "@/features/about/about";
 import { Metadata } from "next";
+import { StructuredData } from "@/components/seo/StructuredData";
 
 export const metadata: Metadata = {
     title: "About Us",
@@ -23,10 +24,7 @@ const structuredData = {
 export default function AboutPage() {
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-            />
+            <StructuredData data={structuredData} id="about-schema" />
             <About />
         </>
     )

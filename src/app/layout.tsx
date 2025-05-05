@@ -3,6 +3,7 @@ import Header from "@/components/layout/header/header";
 import "./globals.css";
 import Footer from "@/components/layout/footer/footer";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { StructuredData } from "@/components/seo/StructuredData";
 
 export const metadata: Metadata = {
   title: {
@@ -86,6 +87,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://bevelspace.vercel.app',
   },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  themeColor: '#ffffff',
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default function RootLayout({
@@ -93,21 +103,43 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Bevel Space',
+    url: 'https://bevelspace.vercel.app',
+    logo: 'https://bevelspace.vercel.app/images/bevelspacelogo.png',
+    sameAs: [
+      'https://twitter.com/bevelspace',
+      'https://www.linkedin.com/company/bevelspace',
+      'https://www.facebook.com/bevelspace'
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+1-XXX-XXX-XXXX',
+      contactType: 'customer service',
+      availableLanguage: ['English']
+    }
+  };
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Bevel Space',
+    url: 'https://bevelspace.vercel.app',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://bevelspace.vercel.app/search?q={search_term_string}',
+      'query-input': 'required name=search_term_string'
+    }
+  };
+
   return (
     <AuthProvider>
       <html lang="en">
         <head>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                '@context': 'https://schema.org',
-                '@type': 'Organization',
-                name: 'Bevel Space',
-                url: 'https://bevelspace.vercel.app',
-              })
-            }}
-          />
+          <StructuredData data={organizationSchema} id="organization-schema" />
+          <StructuredData data={websiteSchema} id="website-schema" />
         </head>
         <body className="min-h-screen relative">
           <Header/>
